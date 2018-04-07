@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/austinmccarson/Downloads/a4-handout/Tag.hpp
+string
+-
+vector
+-
+
+/Users/austinmccarson/Downloads/a4-handout/a4.cpp
+Tag.hpp
+/Users/austinmccarson/Downloads/a4-handout/Tag.hpp
+stack
+-
+
+/Users/austinmccarson/Downloads/a4-handout/main.cpp
+Tag.hpp
+/Users/austinmccarson/Downloads/a4-handout/Tag.hpp
+string
+-
+fstream
+-
+iostream
+-
+queue
+-
+
