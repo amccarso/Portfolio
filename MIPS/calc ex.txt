@@ -1,0 +1,61 @@
+main:
+  addiu $sp,$sp,-32
+  sw $fp,28($sp)
+  move $fp,$sp
+  lb $3,8($fp)
+  li $2,43 # 0x2b
+  bne $3,$2,$L2
+  nop
+
+  lw $3,12($fp)
+  lw $2,16($fp)
+  nop
+  addu $2,$3,$2
+  sw $2,20($fp)
+$L2:
+  lb $3,8($fp)
+  li $2,45 # 0x2d
+  bne $3,$2,$L3
+  nop
+
+  lw $3,12($fp)
+  lw $2,16($fp)
+  nop
+  subu $2,$3,$2
+  sw $2,20($fp)
+$L3:
+  lb $3,8($fp)
+  li $2,42 # 0x2a
+  bne $3,$2,$L4
+  nop
+
+  lw $3,12($fp)
+  lw $2,16($fp)
+  nop
+  mult $3,$2
+  mflo $2
+  sw $2,20($fp)
+$L4:
+  lb $3,8($fp)
+  li $2,47 # 0x2f
+  bne $3,$2,$L5
+  nop
+
+  lw $3,12($fp)
+  lw $2,16($fp)
+  nop
+  bne $2,$0,1f
+  div $0,$3,$2
+  break 7
+1:
+  mfhi $2
+  mflo $2
+  sw $2,20($fp)
+$L5:
+  move $2,$0
+  move $sp,$fp
+  lw $fp,28($sp)
+  addiu $sp,$sp,32
+  j $31
+  nop
+

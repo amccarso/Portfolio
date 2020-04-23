@@ -1,0 +1,108 @@
+.data
+x1: .asciiz "input x1: "
+x2: .asciiz "input x2: "
+y1: .asciiz "input y1: "
+y2: .asciiz "input y2: "
+dist: .asciiz "The Euclidean Distance: "
+newline: .asciiz "\n"
+
+.text
+main:
+
+li $v0, 4 #prep to print
+la $a0, x1 #load string in x1
+syscall #print string in x1
+li $v0, 5 #take integer input
+syscall 
+move $s0, $v0 #store in register
+
+li $v0, 4 #prep to print
+la $a0, x2 #load string in x2
+syscall #print x2
+li $v0, 5 #take int input
+syscall
+move $s1, $v0 #store input in reg
+
+li $v0, 4 
+la $a0, y1
+syscall #print y1
+li $v0, 5
+syscall
+move $s2, $v0 #store input
+
+li $v0, 4
+la $a0, y2
+syscall #print y2
+li $v0, 5
+syscall
+move $s3, $v0 #store input
+
+addi $s4, $s4, 0 #set s4 equal to 0
+
+bgt $s0, $s2, tz #branch if x1>y1
+bgt $s2, $s0, zt #branch if x1<y1
+
+zt:
+sub $s4, $s0, $s2 #subtract x1 and y1
+
+j cont #jump past next label
+
+
+
+
+
+tz:
+sub $s4, $s2, $s0 #sub y1 and x1
+
+j cont #jump into label cont
+
+cont:
+bgt $s1, $s3, ot #branch if x2>y2
+bgt $s3, $s1, to #branch if x2<y2
+#purpose of branching is to avoid negative numbers
+
+
+ot:
+sub $s5, $s1, $s3 #sub x2 and y2
+j cont2 #skip next label
+
+to:
+sub $s5, $s3, $s1 #sub y2, x2
+j cont2 #jump into label cont2
+
+cont2:
+mul $s4, $s4, $s4
+mul $s5, $s5, $s5
+add $s4, $s4, $s5 #add results of (x1-y1)^2 and (x2-y2)^2
+
+#following is sqrt function that is not sqrt.s
+addi $v0, $zero, 0
+loop:
+inloop:
+bgt $t1, $v0, next
+add $t0, $t0, $v0
+beq $t1, $v0, next
+addi $t1, $t1, 1
+j inloop
+next:
+bgt $t0, $s4, end
+addi $v0, $v0, 1
+j loop
+
+end: 
+move $s4, $v0
+
+li $v0, 4 #prep to print string
+la $a0, dist #load string dist
+syscall #print string dist
+
+li $v0, 1 #prep to print int
+move $a0, $s4 #load answer
+syscall #print answer
+
+li $v0, 4
+la $a0, newline
+syscall #seperate from next runthrough with a new line
+
+jal main #loop to main
+

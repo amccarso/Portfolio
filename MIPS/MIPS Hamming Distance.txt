@@ -1,0 +1,63 @@
+.data
+
+first: .asciiz "input first string: "
+second: .asciiz "input second string: "
+dist: .asciiz "The Hamming Distance is: "
+newline: .asciiz "\n"
+buff: .space 8
+
+.text
+main:
+
+li $v0, 4 
+la $a0, first #prints string stored in first
+syscall 
+
+li $v0, 8 #takes input
+la $a0, buff #load byte space into address
+li $a1, 20 #make space for input
+move $s0, $a0 #save input
+syscall 
+
+
+lb $t0, ($s0) #load first char of first input
+lb $t1, 1($s0) #load second char of first input
+
+li $v0, 4
+la $a0, second #print string stored in second
+syscall
+
+li $v0, 8
+la $a0, buff #create space in a0
+move $s1, $a0 #store input
+syscall
+
+lb $t2, ($s1) #load first char of second input
+lb $t3, 1($s1) #load second char of first input
+
+li $s2, 0 #initialize counter
+
+beq $t0, $t2, skip1 #branch if chars are equal so counter is not incremented
+
+addi $s2, 1 #increment counter if chars are not equal
+jal skip1 #jump to s1
+
+skip1: 
+beq $t1, $t3, skip2 #branch if second chars are equal
+
+addi $s2, 1 #increment counter
+jal skip2 #jump to skip2
+
+skip2:
+li $v0, 4
+la $a0, dist #print string stored in distance
+syscall
+li $v0, 1
+move $a0, $s2 #print hamming distance
+syscall
+
+li $v0, 4
+la $a0, newline
+syscall
+
+j main

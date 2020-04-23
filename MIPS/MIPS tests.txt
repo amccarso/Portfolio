@@ -1,0 +1,32 @@
+.data
+first: .asciiz "input_first_number: "
+second: .asciiz "input_second_number: "
+operation: .asciiz " input_operation: "
+
+.text
+main:
+
+li $v0, 4
+la $a0, first
+syscall
+li $v0, 5
+syscall
+
+move $s0, $v0
+
+li $v0, 4
+la $a0, second
+syscall
+li $v0, 5
+syscall
+
+move $s1, $v0
+
+li $v0, 4 #print
+la $a0, operation #print operation
+syscall
+li $v0, 12 #take input
+syscall
+
+
+j main

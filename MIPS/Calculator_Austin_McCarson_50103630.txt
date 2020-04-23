@@ -1,0 +1,85 @@
+.data 
+first: .asciiz "input_first_num: "
+second: .asciiz "input_second_num: "
+operation: .asciiz "input_operation(+, -, *, or /): "
+newline: .asciiz "\n"
+result: .asciiz "The result is: "
+
+.text 
+main: 
+
+li $v0, 4 
+la $a0, first #prints string stored in first
+syscall 
+li $v0, 5 #takes input
+syscall 
+move $s0, $v0 #stores first input
+
+li $v0, 4 #readies system to print string
+la $a0, second #prints string stored in second
+syscall 
+li $v0, 5 #takes input
+syscall 
+move $s1, $v0 #stores second number in variable
+
+li $v0, 4 #prepares system to print
+la $a0, operation #prints string stored
+syscall
+li $v0, 12 #takes input
+syscall
+move $s2, $v0 #stores operation in variable
+
+li $v0, 4
+la $a0, newline #so that the input is not directly next to ans
+syscall 
+
+li $v0, 4
+la $a0, result
+syscall
+
+li $t0, '+' #declare temporary variables for arithmetic symbols
+li $t1, '-'
+li $t2, '*'
+li $t3, '/'
+
+beq $s2, $t0, ADD #establish branch(if) statements for operations
+beq $s2, $t1, SUBTRACT
+beq $s2, $t2, MULTIPLY
+beq $s2, $t3, DIVIDE
+
+ADD:
+add $a0, $s0, $s1 #add inputs
+li $v0, 1 #print answer
+syscall 
+li $v0, 4
+la $a0, newline #separate answer and next run through
+syscall 
+j main
+
+SUBTRACT:
+sub $a0, $s0, $s1 #subtract inputs
+li $v0, 1 #print answer
+syscall
+li $v0, 4
+la $a0, newline #separate answer and next run through
+syscall 
+j main
+
+MULTIPLY:
+mul $a0, $s0, $s1 #pseudo-instruction for multiplication
+li $v0, 1 #print answer
+syscall
+li $v0, 4
+la $a0, newline #separate answer and next run through
+syscall 
+j main
+
+DIVIDE:
+div $a0, $s0, $s1 #pseudo-instruction to perform division
+li $v0, 1 #print answer
+syscall
+li $v0, 4
+la $a0, newline #separate answer and next run through
+syscall 
+j main
+

@@ -1,0 +1,42 @@
+.data 
+first: .asciiz " input_first_num: "
+second: .asciiz " input_second_num: " 
+operation: .asciiz " input_operation: "
+div: .byte ?/?
+times: .byte ?*?
+plus: .byte ?+?
+minus: .byte ?-?
+
+.text 
+main: 
+
+li $v0, 4 
+la $a0, first #prints string stored in first
+syscall 
+li $v0, 5 #takes input
+syscall 
+
+move $s0, $v0 #stores first input
+li $v0, 4 #readies system to print string
+la $a0, second #prints string stored in second
+syscall 
+li $v0, 5 #takes input
+syscall 
+
+move $s1, $v0 #stores second number in variable
+li $v0, 4 #prepares system to print
+la $a0, operation #prints string stored
+syscall
+li $v0, 5 #takes input
+syscall
+
+move $s2, $v0 #stores operation in var
+
+sub $a0, $s0, $s1 
+li $v0, 1
+syscall 
+li $v0, 10 
+syscall
+
+jal main
+
