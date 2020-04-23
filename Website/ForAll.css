@@ -1,0 +1,160 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* Universal Selector Reset cssreset.com */
+* { margin: 0; padding: 0; }
+/* End Reset */
+
+body {
+    background-color: #FFF;
+    text-align: left;
+    font: 11px/1.1em "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 100%;
+}
+
+header {
+    width: 100%;
+    background-color: #C15743;
+    text-align:center;
+}
+
+nav {
+    padding-top: 1.5em;
+    height: 7.5px;
+}
+
+    nav li {
+        font-family: 'Crimson Text', serif;
+        font-size: 25px;
+        white-space: nowrap;
+        display: inline;
+        list-style-type: none;
+        padding:3em;
+    }
+
+nav li a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    color: #eee;
+    text-decoration: underline;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 3em;
+    color: #df1c1c;
+    opacity: 80;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    font-family: 'Anton', sans-serif;
+   
+}
+
+h2 {
+    padding-top: 2.5em;
+    padding-bottom: 1em;
+    padding-left:2.5em;
+    font-size: 3.5em;
+    font-family: 'IBM Plex Serif', sans-serif;
+    line-height: .5em;
+}
+
+h3 {
+    font-size: 1.3em;
+    line-height: 2em;
+    width: 82.5%;
+    padding-left:7.1em;
+}
+
+#AboutRes {
+    padding-top:1.5em;
+}
+
+#center {
+    text-align: center;
+}
+
+.banner {
+    width: 100%;
+    height: 35px;
+    clear: both;
+}
+
+.wrapper2 {
+    margin: 0 auto;
+    width: 100%;
+    background-image: url("Images/logo.jpg");
+    background-size:100%;
+    background-repeat:no-repeat;
+}
+
+#ResumeWrapper {
+    width: 100%;
+    float: left;
+}
+
+.resume-pic{
+    width:70%;
+    height:700px;
+}
+
+.nav-links{
+    line-height: 25px;
+}
+
+.resumes {
+    font-size: 2.5em;
+    padding-bottom: 1em;
+    padding-top: .5em;
+    padding-left: 2.4em;
+}
+
+.LI-profile-badge {
+    padding-top: 1em;
+    padding-left:6em;
+}
+
+#left {
+    padding-left: 3em;
+}
+
+#left a {
+    padding-left:6em;
+}
+
+
+#moreSpace {
+    padding-bottom:28em;
+}
+
+#octocat {
+    width: 220px; 
+    height: 200px;
+    margin: 0 auto;
+    padding-left: 7em;
+    padding-top: 2em;
+}
+
+#gitin{
+    float:right;
+    opacity:.7;
+    padding-top:1.9em;
+}
+
+#title { 
+    padding-left:2.5em;
+}
+
+.left {
+    width:300px;
+    float:left;
+    padding-left:12em;
+    align-content:center;
+}
