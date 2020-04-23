@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Mar  1 09:10:24 2019
+
+@author: austinmccarson
+"""
+
+from tkinter import *
+
+#create the window
+root = Tk()
+
+#modify root window
+root.title('Credit Dissector')
+root.geometry('500x700')
+
+app = Frame(root)
+app.grid()
+
+label = Label(app, text = 'this is a label')
+label.grid()
+
+button1 = Button(app, text = 'this is a button')
+button1.grid()
+
+button2 = Button(app)
+button2.grid()
+button2.configure(text = 'Text')
+
+button3 = Button(app)
+button3.grid()
+button3['text'] = "more text"
+
+
+
+#initialize event loop
+root.mainloop()
